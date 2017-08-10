@@ -11,7 +11,8 @@
 angular
     .module('leikirApp', [
         'ui.router',
-        'ngDialog'
+        'ngDialog',
+        'ngTagsInput'
     ])
     .config(function($stateProvider, $urlRouterProvider) {
 

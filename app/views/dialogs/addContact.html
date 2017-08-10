@@ -1,0 +1,16 @@
+<div>
+    <input type="text" placeholder="picture url" ng-model="addContactCtrl.contact.picture" />
+</div>
+
+<div>
+    <input type="text" placeholder="username" ng-model="addContactCtrl.contact.username" />
+</div>
+
+<div>
+    <input type="text" placeholder="email" ng-model="addContactCtrl.contact.email" />
+</div>
+<tags-input display-property="name" add-on-space="true" add-on-comma="true" ng-model="addContactCtrl.contact.tags">
+</tags-input>
+
+<button ng-click="addContactCtrl.submit()">Submit</button>
+<button ng-click="addContactCtrl.cancel()">Cancel</button>

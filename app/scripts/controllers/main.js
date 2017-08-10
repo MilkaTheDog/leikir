@@ -13,9 +13,22 @@ angular.module('leikirApp')
         var mainCtrl = this;
 
         mainCtrl.contacts = [];
-        // mainCtrl.filter = {
-        //     username: ""
-        // };
+
+        mainCtrl.addContact = function () {
+
+            ngDialog.open(
+                {
+                    templateUrl: 'views/dialogs/addContact.html',
+                    controller: 'AddContactCtrl',
+                    controllerAs: 'addContactCtrl'
+                }).closePromise.then(function (data) {
+
+                if (data.value !== false && data.value !== "$closeButton") {
+
+                    mainCtrl.contacts.push(data.value);
+                }
+            });
+        };
 
         mainCtrl.openDetail = function (contact) {
 
@@ -29,28 +42,13 @@ angular.module('leikirApp')
                         return contact;
                     }
                 }
-            });
+            }).closePromise.then(function (data) {
 
-            // ngDialog.open(
-            //     {
-            //         templateUrl: 'views/dialogs/addTranslation.html',
-            //         controller: 'addTranslationCtrl',
-            //         controllerAs: 'addTranslationCtrl',
-            //         resolve: {
-            //             asset: function () {
-            //                 return asset;
-            //             },
-            //             assetId: function () {
-            //                 return assetId;
-            //             }
-            //         }
-            //     }).closePromise.then(function (data) {
-            //
-            //     if (data.value === true) {
-            //
-            //         projectCtrl.load();
-            //     }
-            // });
+                if (data.value === "delete") {
+
+                    mainCtrl.contacts.splice(mainCtrl.contacts.indexOf(contact), 1);
+                }
+            });
 
         };
 
